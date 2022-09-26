@@ -10,6 +10,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
     />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="src/style.css" />
   </head>
   <body>
@@ -34,7 +35,7 @@
         <ul>
           <li>Last updated: 07:58</li>
           <li>Sunday, September 25th</li>
-          <li>Cloudy</li>
+          <li class="description" id="description">Cloudy</li>
         </ul>
         <div class="row currentWeather">
           <div class="col-6 imageTemp">
@@ -43,15 +44,18 @@
               alt="cloudy"
               width="100"
             />
-            <span class="temperature"> 13 </span>
+            <span class="temperature" id="temperature"> 13 </span>
             <span class="degree">°C | °F </span>
           </div>
           <div class="col-6">
             <ul>
-              <li>Feels like: 11 °C</li>
-              <li>Hi: 18 °C</li>
-              <li>Low: 9 °C</li>
-              <li>Humidity: 75%</li>
+              <li>
+                Feels like: <span class="feelsLike" id="feelsLike">11 </span> °C
+              </li>
+
+              <li>Low: <span class="lowTemp" id="lowTemp"> 9 </span> °C</li>
+              <li>Hi: <span class="hiTemp" id="hiTemp"> 18 </span> °C</li>
+              <li>Humidity: <span class="humidity" id="humidity">75</span>%</li>
             </ul>
           </div>
         </div>

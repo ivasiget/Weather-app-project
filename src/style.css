@@ -6,6 +6,9 @@ li {
   list-style: none;
   color: grey;
 }
+li:first-letter {
+  text-transform: capitalize;
+}
 form {
   margin-bottom: 20px;
 }
