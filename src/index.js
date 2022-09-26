@@ -1,4 +1,4 @@
-let city = "Dublin";
+let city = "Sydney";
 let apiKey = "c95d60a1e3adbeb286133f1ebebc2579";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 console.log(apiUrl);
@@ -95,6 +95,12 @@ function showTemperature(response) {
   let humidity = Math.round(response.data.main.humidity);
   let humidityElement = document.querySelector("#humidity");
   humidityElement.innerHTML = humidity;
+
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 
 axios.get(apiUrl).then(showTemperature);

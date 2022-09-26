@@ -29,9 +29,9 @@ small {
 }
 
 .temperature {
-  font-size: 50px;
+  font-size: 60px;
 }
 .degree {
   position: relative;
-  top: -25px;
+  top: 20px;
 }
