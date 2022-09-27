@@ -1,10 +1,8 @@
 let city = "Sydney";
 let apiKey = "c95d60a1e3adbeb286133f1ebebc2579";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-console.log(apiUrl);
 
 let now = new Date();
-console.log(now);
 
 let hour = now.getHours();
 let minutes = now.getMinutes();
@@ -67,7 +65,6 @@ let dateElement = document.querySelector("#date");
 dateElement.innerHTML = `${date}${sequence}`;
 
 function showTemperature(response) {
-  console.log(response.data);
   let temperature = Math.round(response.data.main.temp);
   let temperatureElement = document.querySelector(`#temperature`);
   temperatureElement.innerHTML = temperature;
@@ -101,6 +98,7 @@ function showTemperature(response) {
     "src",
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
 axios.get(apiUrl).then(showTemperature);
