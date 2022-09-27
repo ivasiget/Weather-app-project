@@ -1,6 +1,4 @@
 let city = "Sydney";
-let apiKey = "c95d60a1e3adbeb286133f1ebebc2579";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
 let now = new Date();
 
@@ -64,6 +62,23 @@ let date = now.getDate();
 let dateElement = document.querySelector("#date");
 dateElement.innerHTML = `${date}${sequence}`;
 
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
+
+function search(city) {
+  let apiKey = "c95d60a1e3adbeb286133f1ebebc2579";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showTemperature);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let inputElemenet = document.querySelector("#input");
+  search(inputElemenet.value);
+}
+
+search("Krapina");
+
 function showTemperature(response) {
   let temperature = Math.round(response.data.main.temp);
   let temperatureElement = document.querySelector(`#temperature`);
@@ -100,5 +115,3 @@ function showTemperature(response) {
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
-
-axios.get(apiUrl).then(showTemperature);
