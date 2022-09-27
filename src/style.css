@@ -31,7 +31,18 @@ small {
 .temperature {
   font-size: 60px;
 }
-.degree {
+.units {
   position: relative;
   top: 20px;
+}
+a {
+  text-decoration: none;
+}
+.notActive {
+  color: black;
+  cursor: default;
+  text-decoration: none;
+}
+.notActive:hover {
+  color: black;
 }

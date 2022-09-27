@@ -80,6 +80,8 @@ function handleSubmit(event) {
 search("Krapina");
 
 function showTemperature(response) {
+  celsiusTemperature = response.data.main.temp;
+
   let temperature = Math.round(response.data.main.temp);
   let temperatureElement = document.querySelector(`#temperature`);
   temperatureElement.innerHTML = temperature;
@@ -115,3 +117,28 @@ function showTemperature(response) {
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
+
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  celsiusLink.classList.remove("notActive");
+  fahrenheitLink.classList.add("notActive");
+  let temperatureElement = document.querySelector("#temperature");
+  let fahrenheitTemperature = Math.round((celsiusTemperature * 9) / 5 + 32);
+  temperatureElement.innerHTML = fahrenheitTemperature;
+}
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  fahrenheitLink.classList.remove("notActive");
+  celsiusLink.classList.add("notActive");
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+let fahrenheitLink = document.querySelector("#fahrenheit");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsius");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+let celsiusTemperature = null;
