@@ -18,9 +18,13 @@ h1 {
 small {
   color: grey;
 }
+.container {
+  max-width: 720px;
+}
 .weather-app {
   border: solid 1px rgb(209, 209, 209);
   border-radius: 4px;
+  box-shadow: 5px 5px 5px rgb(209, 209, 209);
   padding: 10px;
   margin-top: 10px;
 }
