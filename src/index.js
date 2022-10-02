@@ -46,25 +46,25 @@ monthElement.innerHTML = month;
 
 let date = now.getDate();
 let dateElement = document.querySelector("#date");
-dateElement.innerHTML = date;
 
-/*let sequence = ["st", "nd", "rd", "th"];
+let sequence = ["st", "nd", "rd", "th"];
+let sequenceElement = "";
 
 if (date === 1) {
-  dateElement.innerHTML = `${date}${sequence[0]}`;
+  sequenceElement = sequence[0];
 }
 if (date === 2) {
-  dateElement.innerHTML = `${date}${sequence[1]}`;
+  sequenceElement = sequence[1];
 }
 if (date === 3) {
-  dateElement.innerHTML = `${date}${sequence[2]}`;
-} else {
-  dateElement.innerHTML = `${date}${sequence[3]}`;
+  sequenceElement = sequence[2];
+}
+if (date > 3) {
+  sequenceElement = sequence[3];
 }
 
-console.log(date);
-console.log(sequence);
-*/
+dateElement.innerHTML = `${date}${sequenceElement}`;
+
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
@@ -76,8 +76,8 @@ function search(city) {
 
 function handleSubmit(event) {
   event.preventDefault();
-  let inputElemenet = document.querySelector("#input");
-  search(inputElemenet.value);
+  let inputElement = document.querySelector("#input");
+  search(inputElement.value);
 }
 
 search("Krapina");
@@ -85,7 +85,7 @@ search("Krapina");
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
   return days[day];
 }
 
@@ -99,7 +99,7 @@ function getForecast(coordinates) {
 
 function displayForecast(response) {
   let forecast = response.data.daily;
-  console.log(forecast);
+
   let forecastElement = document.querySelector("#forecast-section");
   let forecastHTML = `<div class="row">`;
 
@@ -176,7 +176,25 @@ function showTemperature(response) {
   getForecast(response.data.coord);
 }
 
-function displayFahrenheitTemperature(event) {
+let button = document.querySelector("#button");
+button.addEventListener("click", getCurrentPosition);
+
+function getCurrentPosition() {
+  navigator.geolocation.getCurrentPosition(showPosition);
+}
+
+function showPosition(position) {
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+  let apiKey = "c95d60a1e3adbeb286133f1ebebc2579";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+
+  console.log(apiUrl);
+
+  axios.get(`${apiUrl}&appid=${apiKey}`).then(showTemperature);
+}
+
+/*function displayFahrenheitTemperature(event) {
   event.preventDefault();
   celsiusLink.classList.remove("notActive");
   fahrenheitLink.classList.add("notActive");
@@ -193,10 +211,11 @@ function displayCelsiusTemperature(event) {
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
-let fahrenheitLink = document.querySelector("#fahrenheit");
+/*let fahrenheitLink = document.querySelector("#fahrenheit");
 fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 let celsiusTemperature = null;
+*/
