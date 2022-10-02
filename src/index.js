@@ -82,27 +82,53 @@ function handleSubmit(event) {
 
 search("Krapina");
 
-function displayForecast() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
+function getForecast(coordinates) {
+  let lon = coordinates.lon;
+  let lat = coordinates.lat;
+  let apiKey = "c95d60a1e3adbeb286133f1ebebc2579";
+  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiURL).then(displayForecast);
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  console.log(forecast);
   let forecastElement = document.querySelector("#forecast-section");
   let forecastHTML = `<div class="row">`;
-  let days = ["Mon", "Tue", "Wed", "Thu"];
 
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
             <div class="col-2">
-              <div class="dayForecast" id="dayForecast">${day}</div>
+              <div class="dayForecast" id="dayForecast">${formatDay(
+                forecastDay.dt
+              )}</div>
               <img
-                src="https://openweathermap.org/img/wn/50d@2x.png"
+                src="https://openweathermap.org/img/wn/${
+                  forecastDay.weather[0].icon
+                }@2x.png"
                 alt=""
                 width="45"
               />
               <div class="tempForecast">
-                <span class="hiTempForecast" id="hiTempForecast">15°</span>
-                <span class="lowTempForecast" id="lowTempForecast">8°</span>
+                <span class="hiTempForecast" id="hiTempForecast">${Math.round(
+                  forecastDay.temp.max
+                )}°</span>
+                <span class="lowTempForecast" id="lowTempForecast">${Math.round(
+                  forecastDay.temp.min
+                )}°</span>
               </div>
             </div>`;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
 
@@ -146,6 +172,8 @@ function showTemperature(response) {
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
 
 function displayFahrenheitTemperature(event) {
@@ -172,5 +200,3 @@ let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 let celsiusTemperature = null;
-
-displayForecast();
