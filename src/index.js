@@ -82,6 +82,33 @@ function handleSubmit(event) {
 
 search("Krapina");
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast-section");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Mon", "Tue", "Wed", "Thu"];
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+            <div class="col-2">
+              <div class="dayForecast" id="dayForecast">${day}</div>
+              <img
+                src="https://openweathermap.org/img/wn/50d@2x.png"
+                alt=""
+                width="45"
+              />
+              <div class="tempForecast">
+                <span class="hiTempForecast" id="hiTempForecast">15°</span>
+                <span class="lowTempForecast" id="lowTempForecast">8°</span>
+              </div>
+            </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function showTemperature(response) {
   celsiusTemperature = response.data.main.temp;
 
@@ -145,3 +172,5 @@ let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 let celsiusTemperature = null;
+
+displayForecast();
