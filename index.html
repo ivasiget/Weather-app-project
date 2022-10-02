@@ -16,37 +16,39 @@
   <body>
     <div class="container">
       <div class="weather-app">
-        <form class="mb-3" id="search-form">
-          <div class="row">
-            <div class="col-9">
-              <input
-                type="search"
-                placeholder="Type a city"
-                class="form-control"
-                id="input"
-                autocomplete="off"
-              />
+        <div class="firstSection">
+          <form class="mb-3" id="search-form">
+            <div class="row">
+              <div class="col-9">
+                <input
+                  type="search"
+                  placeholder="Type a city"
+                  class="form-control"
+                  id="input"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="col-3">
+                <input
+                  type="submit"
+                  value="Search"
+                  class="btn btn-primary w-100"
+                />
+              </div>
             </div>
-            <div class="col-3">
-              <input
-                type="submit"
-                value="Search"
-                class="btn btn-primary w-100"
-              />
-            </div>
-          </div>
-        </form>
+          </form>
 
-        <h1>Zagreb</h1>
-        <ul>
-          <li>Last updated: <span class="time" id="time">07:58</span></li>
-          <li>
-            <span class="day" id="day"> Sunday</span>,
-            <span class="month" id="month"> September </span>
-            <span class="date" id="date">25th</span>
-          </li>
-          <li class="description" id="description">Cloudy</li>
-        </ul>
+          <h1>Zagreb</h1>
+          <ul>
+            <li>Last updated: <span class="time" id="time">07:58</span></li>
+            <li>
+              <span class="day" id="day"> Sunday</span>,
+              <span class="month" id="month"> September </span>
+              <span class="date" id="date">25th</span>
+            </li>
+            <li class="description" id="description">Cloudy</li>
+          </ul>
+        </div>
         <div class="row currentWeather">
           <div class="col-6 imageTemp">
             <div class="d-flex weather-temperature">
