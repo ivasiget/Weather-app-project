@@ -44,24 +44,27 @@ let month = months[now.getMonth()];
 let monthElement = document.querySelector("#month");
 monthElement.innerHTML = month;
 
-let sequence = ["st", "nd", "rd", "th"];
-
-if (now.getDate() === 1) {
-  sequence = sequence[0];
-}
-if (now.getDate() === 2) {
-  sequence = sequence[1];
-}
-if (now.getDate() === 3) {
-  sequence = sequence[2];
-} else {
-  sequence = sequence[3];
-}
-
 let date = now.getDate();
 let dateElement = document.querySelector("#date");
-dateElement.innerHTML = `${date}${sequence}`;
+dateElement.innerHTML = date;
 
+/*let sequence = ["st", "nd", "rd", "th"];
+
+if (date === 1) {
+  dateElement.innerHTML = `${date}${sequence[0]}`;
+}
+if (date === 2) {
+  dateElement.innerHTML = `${date}${sequence[1]}`;
+}
+if (date === 3) {
+  dateElement.innerHTML = `${date}${sequence[2]}`;
+} else {
+  dateElement.innerHTML = `${date}${sequence[3]}`;
+}
+
+console.log(date);
+console.log(sequence);
+*/
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
