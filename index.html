@@ -4,12 +4,22 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <title>weather-app</title>
 
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
     />
+    <script
+      src="https://kit.fontawesome.com/09a2350fee.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="src/style.css" />
   </head>
@@ -19,7 +29,7 @@
         <div class="firstSection">
           <form class="mb-3" id="search-form">
             <div class="row">
-              <div class="col-7">
+              <div class="col-8">
                 <input
                   type="search"
                   placeholder="Type a city"
@@ -28,16 +38,18 @@
                   autocomplete="off"
                 />
               </div>
-              <div class="col-2">
+              <div class="col d-flex justify-content-evenly">
                 <input
                   type="submit"
                   value="Search"
-                  class="btn btn-primary w-100"
+                  class="btn btn-primary d-none d-md-flex"
                 />
-              </div>
-              <div class="col-3">
+                <button type="sumbit" class="btn btn-primary d-md-none">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+
                 <button class="btn btn-primary" id="button">
-                  Current location
+                  <i class="fa-solid fa-location-dot"></i>
                 </button>
               </div>
             </div>
@@ -55,17 +67,17 @@
           </ul>
         </div>
         <div class="row currentWeather">
-          <div class="col-6 imageTemp">
+          <div class="col imageTemp">
             <div class="d-flex weather-temperature">
               <img src="." alt="cloudy" id="icon" />
 
               <span class="temperature" id="temperature"> 13 </span>
-              <span class="units">
+              <span class="units pt-3">
                 <div id="celsius">°C</div>
               </span>
             </div>
           </div>
-          <div class="col-6">
+          <div class="col">
             <ul>
               <li>
                 Feels like: <span class="feelsLike" id="feelsLike">11 </span> °C

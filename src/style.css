@@ -40,8 +40,7 @@ small {
   font-size: 60px;
 }
 .units {
-  position: relative;
-  top: 20px;
+  font-size: 24px;
 }
 a {
   text-decoration: none;

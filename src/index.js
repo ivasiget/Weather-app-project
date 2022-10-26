@@ -13,15 +13,7 @@ if (minutes < 10) {
 }
 timeElement.innerHTML = `${hour}:${minutes}`;
 
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
+let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 let day = days[now.getDay()];
 let dayElement = document.querySelector("#day");
 dayElement.innerHTML = day;
